@@ -62,3 +62,6 @@ typings/
 
 # cert perm
 https/
+
+# ES6 files
+*ES6.js
