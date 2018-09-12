@@ -15,6 +15,8 @@ const server = http.createServer((req, res) => {
 
     // Get the path
     const path = parsedURL.pathname;
+
+    // Remove initial / and ending /
     const trimmedPath = path.replace(/^\/+|\/+$/g,'');
 
     // get the query string as an object
@@ -29,7 +31,11 @@ const server = http.createServer((req, res) => {
     // Get the payload, if any
     const decoder = new StringDecoder('utf-8');
     let buffer = '';
+
+    // if there is a body, add data to the buffer
     req.on('data', data => buffer += decoder.write(data));
+    
+    // Once the request ends, add the remaining data to the buffer and send the response
     req.on('end', () => {
         buffer += decoder.end();
 
