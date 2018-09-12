@@ -62,3 +62,4 @@ typings/
 
 # cert perm
 https/
+*.pem
